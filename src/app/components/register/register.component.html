@@ -1,0 +1,12 @@
+<div  [ngClass]="{'background-container' : true , 'center-all' : !opcionSeleccionada}">
+  <div *ngIf="opcionSeleccionada" class="arrow_back-container">
+    <button mat-fab color="primary" title="Volver" (click)="opcionSeleccionada = undefined"><mat-icon>arrow_back</mat-icon></button>
+  </div>
+    <app-custom-buttons style="display: flex; justify-content: center;" *ngIf="!opcionSeleccionada; else registroComponent" [buttons]="opcionesRegistro" (buttonClicked)="mostrarFormRegistro($event)"></app-custom-buttons>
+  <ng-template #registroComponent>
+      <app-registro-paciente *ngIf="opcionSeleccionada!.label == 'Paciente'; else registroProfesional"></app-registro-paciente>
+      <ng-template #registroProfesional>
+        <app-registro-profesional></app-registro-profesional>
+      </ng-template>  
+  </ng-template>
+</div>

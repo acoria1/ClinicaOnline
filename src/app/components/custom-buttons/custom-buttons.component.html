@@ -1,0 +1,3 @@
+<div class="feature-container">
+    <button *ngFor="let button of buttons" [color]="button.color" mat-flat-button (click)="buttonSelected(button)">{{button.label}}</button>
+</div>

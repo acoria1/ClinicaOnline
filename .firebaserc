@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "clinica-online-b2a90": {
+      "hosting": {
+        "ClinicaOnline": [
+          "clinica-online-b2a90"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "clinica-online-b2a90"
+  }
+}
