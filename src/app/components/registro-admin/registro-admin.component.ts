@@ -4,27 +4,22 @@ import { AuthService } from 'src/app/services/auth.service';
 import { CustomValidator } from 'src/app/Entities/custom-validator';
 import { MyErrorStateMatcher } from 'src/app/Entities/my-error-state-matcher';
 import { User } from 'src/app/Entities/user';
-import { Especialidad } from 'src/app/Entities/especialidad';
 import { UsersService } from 'src/app/services/users.service';
-import { Profesional } from 'src/app/Entities/profesional';
 
 @Component({
-  selector: 'app-registro-profesional',
-  templateUrl: './registro-profesional.component.html',
-  styleUrls: ['./registro-profesional.component.scss']
+  selector: 'app-registro-admin',
+  templateUrl: './registro-admin.component.html',
+  styleUrls: ['./registro-admin.component.scss']
 })
-
-export class RegistroProfesionalComponent implements OnInit {
+export class RegistroAdminComponent implements OnInit {
 
   hidePassword : Boolean[] = [true,true];
   matcher = new MyErrorStateMatcher();
   public registerForm! : FormGroup;
   emailAlreadyInUse = false;
-  profileImages : string[] = [];
-  loadedImage : Boolean = true;
   invalidEmail = false;
-  visible : Boolean = false;
-  especialidades : Especialidad[] = [];
+  profileImages : string[] = [];
+  loadedImages : Boolean = true;
   buffering = false;
 
   constructor(public auth: AuthService, private fb: FormBuilder, public usersService : UsersService) { }
@@ -49,19 +44,18 @@ export class RegistroProfesionalComponent implements OnInit {
     this.hidePassword[index] = !this.hidePassword[index];
   }
 
-  handleRegister(){
-    if(!this.imagenCargada()){
-      this.loadedImage = false;
+  async handleRegister(){
+    if(!this.ambasImagenesCargadas()){
+      this.loadedImages = false;
       return;
     }
-
     this.buffering = true;
     this.usersService.registerNewUser(
       this.constructUser(),
       this.registerForm.get('password')!.value,
       this.profileImages)
       .catch((error) => {
-        this.buffering = false; 
+        this.buffering = false;        
         if (error.code === "auth/email-already-in-use"){
           this.emailAlreadyInUse = true;
         } 
@@ -71,34 +65,24 @@ export class RegistroProfesionalComponent implements OnInit {
       });
   }
 
-  constructUser() : Profesional{
-    return new Profesional(
+  constructUser() : User{
+    return new User(
       this.registerForm.get('email')!.value,
       this.registerForm.get('nombre')!.value,
       this.registerForm.get('apellido')!.value,
-      this.registerForm.get('edad')!.value,
+      this.registerForm.get('edad')!.value,   
       this.registerForm.get('dni')!.value,
-      this.profileImages,
-      this.especialidades
-      )    
+      [],
+      true
+      )
   }
 
-  refrescarEspecialidades(especialidades : Especialidad[]){
-    this.especialidades = especialidades;
+  getImage( imagen : any, index : number){
+    this.profileImages[index] = imagen;
+    this.loadedImages = true;
   }
 
-  mostrarFormulario(c : any){
-    this.visible = true;
-  }
-
-  getImage( imagen : any){
-    this.profileImages[0] = imagen;
-    this.loadedImage = true;
-  }
-
-  imagenCargada() : boolean {
+  ambasImagenesCargadas() : boolean {
     return this.profileImages.length == 1;
   }
 }
-
-

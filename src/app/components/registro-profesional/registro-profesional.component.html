@@ -6,10 +6,11 @@
       <mat-card-header>
         <mat-card-title>Registro Profesional</mat-card-title>
       </mat-card-header>
-      <form [formGroup]="registerForm" (ngSubmit)="handleRegister()" class="example-form">
+      <form [formGroup]="registerForm" (ngSubmit)="handleRegister()" class="example-form" [hidden]=buffering>
         <mat-card-content>
           <div style="display:flex; flex-direction: row;justify-content: space-between;">
             <div style="width:50%; padding: 15px;">
+
               <mat-form-field class="example-full-width" hideRequiredMarker>
                 <input type="email" name="email" formControlName="email" matInput placeholder="Email" required>
                 <mat-error *ngIf="emailAlreadyInUse">
@@ -62,12 +63,20 @@
             <div style="width: 50%; padding: 15px;">
               <app-especialidades (especialidadAgregada)="refrescarEspecialidades($event)"
                 (especialidadesCargadas)="mostrarFormulario($event)"></app-especialidades>
-            </div>
+                <div style="display:flex; flex-direction: row;">
+                  <app-subir-imagen style="margin: 5px;" (datosImagen)="getImage($event)" ></app-subir-imagen>
+                </div>
+            </div>            
           </div>
-  
+          <mat-error style="text-align: center; margin-top:10px" *ngIf="!loadedImage">
+            Debe subir ambas imagenes
+        </mat-error>
         </mat-card-content>
         <button [disabled]="!registerForm.valid || especialidades.length === 0" type="submit" mat-stroked-button
           color="accent" class="btn-block">Registrarme</button>
       </form>
+      <div *ngIf="buffering" class="spinner">
+        <mat-spinner color="accent"></mat-spinner>
+    </div>
     </mat-card>
   </div>

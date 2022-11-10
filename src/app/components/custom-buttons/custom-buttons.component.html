@@ -1,3 +1,9 @@
-<div class="feature-container">
-    <button *ngFor="let button of buttons" [color]="button.color" mat-flat-button (click)="buttonSelected(button)">{{button.label}}</button>
+<div [class]="classWrapper">
+    <mat-grid-list class="grid-layout-custom" [cols]="columns" rowHeight="1:1" gutterSize="5%">
+        <mat-grid-tile class="selectable" [style.background]="'url(' + button.backgroundImg + ') center'" [style.background-size]="'cover'" *ngFor="let button of buttons" (click)="buttonSelected(button)">
+            <div>
+                <h1 [style.color]="button.color">{{button.label}}</h1> 
+            </div>            
+        </mat-grid-tile>
+    </mat-grid-list>    
 </div>

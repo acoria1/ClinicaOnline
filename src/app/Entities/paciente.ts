@@ -2,10 +2,10 @@ import { User } from "./user";
 
 export class Paciente extends User{
 
-    public obraSocial : string | undefined;
+    public obraSocial : string;
     
-    constructor(email : string, nombre: string,apellido: string,edad: number, imagenes : string[], obraSocial? : string){
-        super(email,nombre,apellido,edad, imagenes,false);
+    constructor(email : string, nombre: string,apellido: string,edad: number, dni : string, obraSocial : string,  imagenes : string[], ){
+        super(email,nombre,apellido,edad, dni, imagenes,false);
         this.obraSocial = obraSocial;
     }
 }

@@ -33,10 +33,15 @@ export class AuthService {
     });
   }
 
-   // Returns true when user is looged in and email is verified
+   // Returns true when user is logged in and email is verified
    get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user')!);
     return user !== null;
+  }
+
+  get isVerified(): boolean {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    return user !== null && user.emailVerified;
   }
 
   SignIn(email: string, password: string) : Promise<any> {
@@ -50,7 +55,7 @@ export class AuthService {
       .createUserWithEmailAndPassword(user.email, password)
       .then((result) => {
         this.SendVerificationMail();
-        result.user!.updateProfile({displayName : user.nombre, photoURL : "blobexample"})
+        result.user!.updateProfile({displayName : user.nombre, photoURL : user.imagenes[0]})
         .then(()=>{
           this.SetUserData(result.user!.uid, user);
           this.router.navigate(['home']);
@@ -75,24 +80,6 @@ export class AuthService {
       this.router.navigate(['login']);
     });
   }
-
-  // Sign in with Google
-  // GoogleAuth() {
-  //   return this.AuthLogin(new auth.GoogleAuthProvider());
-  // }
-
-  // Auth logic to run auth providers
-  // AuthLogin(provider: any) {
-  //   return this.afAuth
-  //     .signInWithPopup(provider)
-  //     .then((result) => {
-  //       this.router.navigate(['users']);
-  //       this.SetUserData(result.user);
-  //     })
-  //     .catch((error) => {
-  //       window.alert(error);
-  //     });
-  // }
 
   SendVerificationMail() {
     return this.afAuth.currentUser

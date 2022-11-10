@@ -31,6 +31,12 @@ import { CapitalizePipe } from './pipes/capitalize.pipe';
 import { RegistroPacienteComponent } from './components/registro-paciente/registro-paciente.component';
 import { RegistroProfesionalComponent } from './components/registro-profesional/registro-profesional.component';
 import { CustomButtonsComponent } from './components/custom-buttons/custom-buttons.component';
+import { SubirImagenComponent } from './components/subir-imagen/subir-imagen.component';
+import { FilesService } from './services/files.service';
+import { UsersService } from './services/users.service';
+import { MiPerfilComponent } from './components/mi-perfil/mi-perfil.component';
+import { RegistroAdminComponent } from './components/registro-admin/registro-admin.component';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +50,11 @@ import { CustomButtonsComponent } from './components/custom-buttons/custom-butto
     CapitalizePipe,
     RegistroPacienteComponent,
     RegistroProfesionalComponent,
-    CustomButtonsComponent
+    CustomButtonsComponent,
+    SubirImagenComponent,
+    MiPerfilComponent,
+    RegistroAdminComponent,
+    UsuariosComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +77,9 @@ import { CustomButtonsComponent } from './components/custom-buttons/custom-butto
     MatDatepickerModule,
     MatNativeDateModule,
     AuthService,
-    CapitalizePipe
+    CapitalizePipe,
+    FilesService,
+    UsersService
   ],
   bootstrap: [AppComponent]
 })

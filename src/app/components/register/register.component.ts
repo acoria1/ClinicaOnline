@@ -1,10 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
-import { CustomValidator } from 'src/app/Entities/custom-validator';
-import { MyErrorStateMatcher } from 'src/app/Entities/my-error-state-matcher';
-import { User } from 'src/app/Entities/user';
-import { Especialidad } from 'src/app/Entities/especialidad';
 import { Feature } from 'src/app/classes/feature';
 
 @Component({
@@ -17,8 +11,8 @@ import { Feature } from 'src/app/classes/feature';
 export class RegisterComponent implements OnInit {
 
   opcionesRegistro : Feature[] = [
-    { label : "Paciente", color : 'warn'},
-    { label : "Profesional", color : 'accent'}
+    { id: 'feature-paciente', label : "Paciente", color : 'white', backgroundImg: 'https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=876&q=80'},
+    { id: 'feature-profesional', label : "Profesional", color : 'white', backgroundImg: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'}
   ];
   opcionSeleccionada? : Feature;
 

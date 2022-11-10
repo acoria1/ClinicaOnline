@@ -1,7 +1,7 @@
 <div class="register-wrapper" fxLayout="row" fxLayoutAlign="center center">
     <mat-card class="box box-wide">
         <mat-card-header>
-            <mat-card-title>Registro Paciente</mat-card-title>
+            <mat-card-title>Registro Admin</mat-card-title>
         </mat-card-header>
         <form [formGroup]="registerForm" (ngSubmit)="handleRegister()" class="example-form" [hidden]=buffering>
             <mat-card-content>
@@ -64,19 +64,13 @@
                             <input matInput type="number" name="edad" formControlName="edad" placeholder="Edad"
                                 required>
                         </mat-form-field>                        
-
-                        <mat-form-field class="example-full-width" hideRequiredMarker>
-                            <input matInput type="text" name="obraSocial" formControlName="obraSocial"
-                                placeholder="Obra Social" required>
-                        </mat-form-field>
                     </div>                    
                 </div>
                 <div style="display:flex; flex-direction: row;">
                     <app-subir-imagen style="margin: 5px;" (datosImagen)="getImage($event,0)" ></app-subir-imagen>
-                    <app-subir-imagen style="margin: 5px;" (datosImagen)="getImage($event,1)" ></app-subir-imagen>
                 </div>
                 <mat-error style="text-align: center; margin-top:10px" *ngIf="!loadedImages">
-                    Debe subir ambas imagenes
+                    Debe cargar una imagen
                 </mat-error>
             </mat-card-content>
             <button [disabled]="!registerForm.valid" type="submit" mat-stroked-button

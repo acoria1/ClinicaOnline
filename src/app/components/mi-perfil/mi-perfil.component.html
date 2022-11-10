@@ -1,0 +1,12 @@
+<div class="row" *ngIf="auth.userData as user">
+    <div class="col-md-12">
+      <div class="media">
+        <img class="align-self-start img-thumbnail rounded-circle w-25" src="{{(user.photoURL) ? user.photoURL : '/assets/images/dummy-user.png'}}"
+          alt="{{user.displayName}}">
+        <div class="media-body">
+          <h1>Hello: <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
+          <p>Email: <strong>{{user.email}}</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>

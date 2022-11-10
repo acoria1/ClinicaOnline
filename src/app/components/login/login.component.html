@@ -5,6 +5,9 @@
       </mat-card-header>
       <form [formGroup]="loginForm" (ngSubmit)="handleLogIn()">
         <mat-card-content>
+          <div class="feature-container-login">
+            <app-custom-buttons [buttons]="mockUsersButtons" (buttonClicked)="loadLoginForm($event)" [classWrapper]="'feature-container-login'" [columns]="3"></app-custom-buttons>
+          </div>
           <mat-form-field class="example-full-width" hideRequiredMarker>
             <input matInput type="email" name="email" formControlName="email"   placeholder="Email" autocomplete="email" required>
             <mat-error
@@ -28,11 +31,7 @@
         <button [disabled]="!loginForm.valid" mat-stroked-button type="submit" color="accent" class="btn-block" >
           Log in
         </button>
-      </form>
-      <div>
-        <button (click)="setMockUser(0)" mat-raised-button>Mock User 1</button>
-        <button (click)="setMockUser(1)" mat-raised-button>Mock User 2</button>
-      </div>        
+      </form>       
     </mat-card>
   </div>
 

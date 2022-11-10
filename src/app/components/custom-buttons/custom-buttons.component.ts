@@ -9,6 +9,8 @@ import { Feature } from 'src/app/classes/feature';
 export class CustomButtonsComponent implements OnInit {
 
   @Input() buttons : Feature[] = [];
+  @Input() classWrapper : string = "";
+  @Input() columns : number = 2;
   @Output() buttonClicked = new EventEmitter<Feature>();
 
   constructor() { }
