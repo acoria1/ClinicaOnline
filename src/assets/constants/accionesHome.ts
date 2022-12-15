@@ -8,7 +8,7 @@ export const accionesHome : accionTurno[] = [
         profesional : false,
         admin : true
       },
-      route: 'nuevo-turno'
+      route: 'private/nuevo-turno'
     },
     {
       accion : 'TURNOS',
@@ -17,7 +17,7 @@ export const accionesHome : accionTurno[] = [
         profesional : true,
         admin : true
       },
-      route: 'mis-turnos'
+      route: 'private/mis-turnos'
     },
     {
       accion : 'MIS PACIENTES',
@@ -26,7 +26,7 @@ export const accionesHome : accionTurno[] = [
         profesional : true,
         admin : false
       },
-      route: 'mis-pacientes'
+      route: 'private/mis-pacientes'
     },
     {
       accion : 'INFORMES',
@@ -35,6 +35,15 @@ export const accionesHome : accionTurno[] = [
         profesional : false,
         admin : true
       },
-      route: 'informes'
+      route: 'private/informes'
+    },
+    {
+      accion : 'ESPECIALIDADES',
+      permisos : {
+        paciente : false,
+        profesional : false,
+        admin : true
+      },
+      route: 'especialidades'
     },
   ];

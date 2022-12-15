@@ -80,6 +80,9 @@ import * as exporting from 'highcharts/modules/exporting.src';
 import { InformesComponent } from './components/informes/informes.component';
 import { NotAuthorizedComponent } from './components/not-authorized/not-authorized.component';
 import { HighligthDirective } from './directives/highligth.directive';
+import { NuevaEspecialidadComponent } from './components/especialidades/nueva-especialidad/nueva-especialidad.component';
+import { ListadoEspecialidadesComponent } from './components/especialidades/listado-especialidades/listado-especialidades.component';
+import { SubirImgDialogComponent } from './dialogs/subir-img-dialog/subir-img-dialog.component';
 
 @NgModule({
   declarations: [
@@ -133,6 +136,9 @@ import { HighligthDirective } from './directives/highligth.directive';
     InformesComponent,
     NotAuthorizedComponent,
     HighligthDirective,
+    NuevaEspecialidadComponent,
+    ListadoEspecialidadesComponent,
+    SubirImgDialogComponent,
   ],
   imports: [
     BrowserModule,

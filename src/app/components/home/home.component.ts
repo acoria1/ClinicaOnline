@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   acciones? : accionTurno[];
   accionesBtns : Feature[] = [];
-  accionesColores : string[] = ["#d8fcca", "#d4d4ff", "#ffd4e6c5"];
+  accionesColores : string[] = ["#d8fcca", "#d4d4ff", "#ffd4e6c5", "#fff9a7"];
   tipoUsuario? : string;
   visibility? : 'public' | 'private';
 

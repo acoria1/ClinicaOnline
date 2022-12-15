@@ -23,7 +23,9 @@ export class MisPacientesComponent implements OnInit {
   ngOnInit(): void {
     this.profesional = this._usuariosService.getCurrentUser();
     this._turnosService.getTurnosUsuario(this.profesional?.uid!,this.profesional?.typename!)?.subscribe((turnos)=>{
-      this.idsPacientesAtendidos = turnos.map((t:any)=> t.idPaciente);
+      this.idsPacientesAtendidos = turnos
+      .filter((t : any)=> t.estado == 'FINALIZADO')
+      .map((t:any)=> t.idPaciente);
       this.traerPacientes();
     })
   }

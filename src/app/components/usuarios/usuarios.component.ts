@@ -21,7 +21,7 @@ export class UsuariosComponent implements OnInit, AfterViewChecked {
   usuarioSeleccionado? : User;
   filterValue = '';
 
-  constructor(private _usuariosService : UsersService, private auth : AuthService, private cdRef : ChangeDetectorRef, private _router : Router, public dialog : MatDialog, private filesService : FilesService) { }
+  constructor(private _usuariosService : UsersService, public auth : AuthService, private cdRef : ChangeDetectorRef, private _router : Router, public dialog : MatDialog, private filesService : FilesService) { }
   
 
   ngOnInit(): void {

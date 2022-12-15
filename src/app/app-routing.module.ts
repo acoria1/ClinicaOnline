@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AltaHorariosComponent } from './components/alta-horarios/alta-horarios.component';
+import { ListadoEspecialidadesComponent } from './components/especialidades/listado-especialidades/listado-especialidades.component';
+import { NuevaEspecialidadComponent } from './components/especialidades/nueva-especialidad/nueva-especialidad.component';
 import { HomeComponent } from './components/home/home.component';
 import { InformesComponent } from './components/informes/informes.component';
 import { LoginComponent } from './components/login/login.component';
@@ -30,7 +32,10 @@ const routes: Routes = [
   {path: 'mis-turnos' , component: TurnosComponent, canActivate : [AuthGuard, HabilitadoGuard]},
   {path: 'mis-pacientes' , component: MisPacientesComponent, canActivate : [ProfesionalGuard, HabilitadoGuard]},
   {path: 'informes' , component: InformesComponent, canActivate : [AdminGuard]},
-  {path: 'not-authorized' , component: NotAuthorizedComponent, canActivate : [AuthGuard], data : { animation : 'NotAuthorizedPage'}},  
+  {path: 'nueva-especialidad' , component: NuevaEspecialidadComponent, canActivate : [AdminGuard]},
+  {path: 'especialidades' , component: ListadoEspecialidadesComponent, canActivate : [AdminGuard]},
+  {path: 'not-authorized' , component: NotAuthorizedComponent, canActivate : [AuthGuard], data : { animation : 'NotAuthorizedPage'}},
+  { path: 'private', loadChildren: () => import ('./components/private/private.module').then(p=>p.PrivateModule)},
   {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];
 

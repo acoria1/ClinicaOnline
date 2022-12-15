@@ -67,7 +67,7 @@ done - se puede filtrar historia clinica por profesional
 done - descarga de pdf de historia clinica
 done - se puede ver la reseña de la historia clinica
 done - animacion de transición
-
+done - readme
 
 Requerimientos adicionales:
 s2:
@@ -80,9 +80,7 @@ poder ver la reseña del turno desde la historia clinica
 
 
 TO DO OBLIGATORIO:
-hacer el readme
 implementar lazy load
-descomentar logs en auth service
 
 TO DO AHORA:
 Agregados sprint 2:

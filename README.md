@@ -13,56 +13,70 @@ sábados en el horario de 9:00 a 14:00.
 
 ### Solicitar Turno ➕
 
-![principal](https://github.com/AlejandroLaborde/TP-Clinica-Online/blob/master/imagenes_readme/reserva.gif)
+![principal](https://github.com/acoria1/ClinicaOnline/blob/master/nuevo_turno.gif)
+
+Los usuarios administradores podrán seleccionar el paciente a quien sacarle el turno.
 
 ### Usuarios 🔧
 
 _Tenemos 3 tipos de usuarios, ADMINISTRADOR, PROFESIONAL y USUARIO_
 
+##### ADMINISTRADOR
 ```
-ADMINISTRADOR_ 
 Puede agregar a otros administradores al sistema, y es el unico que puede aceptar a los profesionales para atender en la clinica.
-Este mismo puede realizar alta de especialidades, para que esten disponibles en el area de registro.
-
 
 ```
+![principal](https://github.com/acoria1/ClinicaOnline/blob/master/admin_panel.gif)
 
+##### PROFESIONAL
 ```
-PROFESIONAL_ 
 Se registra como profesional de la clinica, y debe ser aceptado para atender en la misma.
 Una vez dentro del sistema, puede configurar el tiempo de sus turnos y agregar especialidades de ser necesario.
 
 ```
+###### Sección Horarios:
+![principal](https://github.com/acoria1/ClinicaOnline/blob/master/horarios.gif)
 
+###### Sección 'Mis Pacientes'
+![principal](https://github.com/acoria1/ClinicaOnline/blob/master/mis_pacientes.png)
+
+
+##### PACIENTES
 ```
-USUARIO_ 
 Se registra en el sistema con dos imagenes, puede reservar turnos eligiendo el profesional o la especialidad.
 Luego de esto, puede ser atendido, y responder un cuestionario sobre la atencion recibida.
 
-Desde la pestaña de mi perfil, podrás ver y descargar tu historial clínico
-
 ```
+###### Sección 'Mi Perfil'
+Desde la pestaña de mi perfil, podrán ver y descargar su historial clínico
+![principal](https://github.com/acoria1/ClinicaOnline/blob/master/mi_perfil.png)
+
 
 ### Ingreso 🏥
 
-![principal](https://github.com/AlejandroLaborde/TP-Clinica-Online/blob/master/imagenes_readme/ingreso.gif)
+![principal](https://github.com/acoria1/ClinicaOnline/blob/master/login.gif)
 
 ### Registro ➕
 
-![principal](https://github.com/AlejandroLaborde/TP-Clinica-Online/blob/master/imagenes_readme/registro.gif)
+![principal](https://github.com/acoria1/ClinicaOnline/blob/master/registro.gif)
 
 ### Mis Turnos
+
 En esta sección podrás ver todos tus turnos pedidos, cancelados, finalizados. A su vez podrás acceder a la reseña del turno luego de su finalización. También podrás realizar una encuesta de satisfacción correspondiente a la atención recibida
 
-### Informes 
+![principal](https://github.com/acoria1/ClinicaOnline/blob/master/mis_turnos.gif)
 
-![principal](https://github.com/AlejandroLaborde/TP-Clinica-Online/blob/master/imagenes_readme/graficos.gif)
+### Informes 📈
+
+Para los usuarios administradores, podrá ver todos los informes y logs de los usuarios desde la sección de Informes. Se pueden descargar todos los informes en formato excel desde el botón de descarga. Alternativamente se puede imprimir cada gráfico individualmente como PDF o imagen.
+
+![principal](https://github.com/acoria1/ClinicaOnline/blob/master/informes.gif)
+
 
 ## Despliegue 📦
 
-_El sistema esta deployado en firebase_
+_Firebase project hosting:_
 ```
-https://clinica-online.firebaseapp.com/
+https://clinica-online-ed9da.web.app
 ```
-
 

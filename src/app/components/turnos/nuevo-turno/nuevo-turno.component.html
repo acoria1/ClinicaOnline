@@ -30,7 +30,7 @@
                             <app-profesional-detalle [profesional]="profesionalSeleccionado"></app-profesional-detalle>
                         </div>
                         <div class="col-7">
-                            <app-seleccionar-especialidad [profesional]="profesionalSeleccionado!" (especialidadSeleccionadaEvent)="setEspecialidadSeleccionada($event)"></app-seleccionar-especialidad>
+                            <app-seleccionar-especialidad [especialidades]="profesionalSeleccionado!.especialidades" (especialidadSeleccionadaEvent)="setEspecialidadSeleccionada($event)"></app-seleccionar-especialidad>
                         </div>
                     </div>
                     <div class="row justify-content-around">

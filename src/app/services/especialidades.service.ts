@@ -25,4 +25,8 @@ export class EspecialidadesService {
   addEspecialidad(especialidad : any) : Promise<DocumentReference<any>>{
     return this.especialidades.add((Object.fromEntries(Object.entries(especialidad).filter(([key]) => !(key === 'id')))));
   }
+
+  updateEspecialidad(especialidad : any){
+    return this._db.collection('especialidades').doc(especialidad.id).set(JSON.parse(JSON.stringify(especialidad)));
+  }
 }

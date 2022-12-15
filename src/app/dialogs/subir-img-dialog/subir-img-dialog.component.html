@@ -1,0 +1,11 @@
+<div class="container-fluid">
+    <h1 mat-dialog-title class="text-center">{{data.especialidad.toUpperCase()}}</h1>
+    <div mat-dialog-content>
+        <app-subir-imagen (datosImagen)="getImage($event)"></app-subir-imagen>
+    </div>
+    <div mat-dialog-actions class="justify-content-around">
+        <button mat-flat-button color="warn" (click)="onNoClick()">Volver</button>
+        <button mat-flat-button color="primary" [mat-dialog-close]="imagen" cdkFocusInitial>Confirmar</button>
+    </div>
+</div>
+
