@@ -13,7 +13,7 @@ sábados en el horario de 9:00 a 14:00.
 
 ### Solicitar Turno ➕
 
-![principal](https://github.com/acoria1/ClinicaOnline/blob/master/nuevo_turno.gif)
+![principal](https://github.com/acoria1/ClinicaOnline/blob/master/src/assets/gifs/nuevo_turno.gif)
 
 Los usuarios administradores podrán seleccionar el paciente a quien sacarle el turno.
 
@@ -26,7 +26,7 @@ _Tenemos 3 tipos de usuarios, ADMINISTRADOR, PROFESIONAL y USUARIO_
 Puede agregar a otros administradores al sistema, y es el unico que puede aceptar a los profesionales para atender en la clinica.
 
 ```
-![principal](https://github.com/acoria1/ClinicaOnline/blob/master/admin_panel.gif)
+![principal](https://github.com/acoria1/ClinicaOnline/blob/master/src/assets/gifs/admin_panel.gif)
 
 ##### PROFESIONAL
 ```
@@ -35,10 +35,10 @@ Una vez dentro del sistema, puede configurar el tiempo de sus turnos y agregar e
 
 ```
 ###### Sección Horarios:
-![principal](https://github.com/acoria1/ClinicaOnline/blob/master/horarios.gif)
+![principal](https://github.com/acoria1/ClinicaOnline/blob/master/src/assets/gifs/horarios.gif)
 
 ###### Sección 'Mis Pacientes'
-![principal](https://github.com/acoria1/ClinicaOnline/blob/master/mis_pacientes.png)
+![principal](https://github.com/acoria1/ClinicaOnline/blob/master/src/assets/gifs/mis_pacientes.png)
 
 
 ##### PACIENTES
@@ -49,28 +49,28 @@ Luego de esto, puede ser atendido, y responder un cuestionario sobre la atencion
 ```
 ###### Sección 'Mi Perfil'
 Desde la pestaña de mi perfil, podrán ver y descargar su historial clínico
-![principal](https://github.com/acoria1/ClinicaOnline/blob/master/mi_perfil.png)
+![principal](https://github.com/acoria1/ClinicaOnline/blob/master/src/assets/gifs/mi_perfil.png)
 
 
 ### Ingreso 🏥
 
-![principal](https://github.com/acoria1/ClinicaOnline/blob/master/login.gif)
+![principal](https://github.com/acoria1/ClinicaOnline/blob/master/src/assets/gifs/login.gif)
 
 ### Registro ➕
 
-![principal](https://github.com/acoria1/ClinicaOnline/blob/master/registro.gif)
+![principal](https://github.com/acoria1/ClinicaOnline/blob/master/src/assets/gifs/registro.gif)
 
 ### Mis Turnos
 
 En esta sección podrás ver todos tus turnos pedidos, cancelados, finalizados. A su vez podrás acceder a la reseña del turno luego de su finalización. También podrás realizar una encuesta de satisfacción correspondiente a la atención recibida
 
-![principal](https://github.com/acoria1/ClinicaOnline/blob/master/mis_turnos.gif)
+![principal](https://github.com/acoria1/ClinicaOnline/blob/master/src/assets/gifs/mis_turnos.gif)
 
 ### Informes 📈
 
 Para los usuarios administradores, podrá ver todos los informes y logs de los usuarios desde la sección de Informes. Se pueden descargar todos los informes en formato excel desde el botón de descarga. Alternativamente se puede imprimir cada gráfico individualmente como PDF o imagen.
 
-![principal](https://github.com/acoria1/ClinicaOnline/blob/master/informes.gif)
+![principal](https://github.com/acoria1/ClinicaOnline/blob/master/src/assets/gifs/informes.gif)
 
 
 ## Despliegue 📦
