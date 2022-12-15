@@ -1,0 +1,69 @@
+<div class="container-fluid">
+    <h1 mat-dialog-title class="text-center"> COMPLETAR DATOS DEL PACIENTE</h1>
+    <div mat-dialog-content class>
+        <div class="row">
+            <div class="col-3">
+                <mat-form-field class="mat-input-short" appearance="outline">
+                    <mat-label>Altura (cm)</mat-label>
+                    <input type="number" matInput required [(ngModel)]="alturaCM">
+                </mat-form-field>
+            </div>
+            <div class="col-3">
+                <mat-form-field  class="mat-input-short" appearance="outline">
+                    <mat-label>Peso (kg)</mat-label>
+                    <input type="number" matInput required [(ngModel)]="pesoKG">
+                </mat-form-field>
+            </div>
+            <div class="col-3">
+                <mat-form-field  class="mat-input-short" appearance="outline">
+                    <mat-label>Temperatura (celsius)</mat-label>
+                    <input type="number" matInput required [(ngModel)]="temperatura">
+                </mat-form-field>
+            </div>
+            <div class="col-3">
+                <mat-form-field  class="mat-input-short" appearance="outline">
+                    <mat-label>Presion</mat-label>
+                    <input type="text" matInput required [(ngModel)]="presion">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div *ngIf="clavesRepetidas" class="text-danger text-center">
+                    Las claves no pueden ser iguales
+                </div>
+                <div *ngIf="clavesConEspacios" class=" text-center text-danger">
+                    Las claves no pueden contener espacios
+                </div>
+            </div>
+        </div>
+        <div *ngFor="let dato of datosAdicionales" class="row">
+            <p>Dato adicional:</p>
+            <div class="col-3">
+                <div class="row">
+                    <mat-form-field class="" appearance="outline">
+                        <mat-label>Clave</mat-label>
+                        <input type="text" matInput [(ngModel)]="dato.key">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-3">
+                <mat-form-field class="mat-input-long" appearance="outline">
+                    <mat-label>Valor</mat-label>
+                    <input type="text" matInput [(ngModel)]="dato.value">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="fill" class="w-100">
+                <mat-label class="w-100">Reseña</mat-label>
+                <textarea rows="6" cols="80" class="w-100" matInput [(ngModel)]="resenia"></textarea>
+            </mat-form-field>
+        </div>
+        
+    </div>
+    <div mat-dialog-actions class="justify-content-around">
+        <button mat-flat-button color="warn" (click)="onNoClick()">Volver</button>
+        <button mat-flat-button color="primary" (click)="submitDialog()" cdkFocusInitial>Confirmar</button>
+    </div>
+</div>

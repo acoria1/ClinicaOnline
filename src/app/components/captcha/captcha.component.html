@@ -1,0 +1,14 @@
+<div *ngIf="tiles.length == 9">
+    <div class="row">
+        <h1>Select the green squares</h1>
+    </div>
+    <div class="row">
+        <mat-grid-list cols="3" rowHeight="1:1" gutterSize="2%" class="grid-layout-custom">
+            <mat-grid-tile *ngFor="let item of tiles" [style.background-color]="item.clicked ? item.colorClicked : item.colorNotClicked" (click)="item.clicked = !item.clicked" [style.background-size]="'cover'" class="selectable">
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>    
+    <div class="row">
+        <button mat-flat-button color="primary" (click)="submitCaptcha()">Submit</button>
+    </div>
+</div>

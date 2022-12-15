@@ -1,0 +1,53 @@
+<div *ngIf="profesional !== undefined" >
+    <mat-card class="mat-elevation-z5" appHighligth="#faf5b2">
+        <mat-card-header>
+            <mat-card-title class="text-primary">{{turno.dia}} {{turno.fecha}}</mat-card-title>
+            <mat-card-subtitle>{{turno.inicia}} - {{turno.finaliza}}</mat-card-subtitle>
+        </mat-card-header>        
+        <mat-card-content class=" container mt-2">
+            <div class="row mb-1">
+                <div class="col-12">
+                    <strong>Paciente</strong> : {{turno.paciente!.nombre | capitalize}} {{turno.paciente!.apellido | capitalize}}
+                </div>  
+            </div>
+            <div class="row mb-1">
+                <div class="col-11 offset-1">
+                    <strong>DNI</strong> : {{turno.paciente!.dni}}
+                </div>  
+            </div>
+            <div class="row mb-2">
+                <div class="col-11 offset-1">
+                    <strong>Obra Social</strong> : {{turno.paciente!.obraSocial}}
+                </div>  
+            </div>
+            <div class="row mb-2" *ngIf="turno.estado != ''" >
+                <div class="col-12" [ngClass]="{'text-danger': turno.estado == 'CANCELADO' || turno.estado == 'RECHAZADO', 'text-primary' : turno.estado == 'FINALIZADO', 'text-success' : turno.estado == 'ACEPTADO', 'text-warning' : turno.estado == 'PENDIENTE'}">
+                    <strong>ESTADO</strong> : {{turno.estado}}
+                </div>
+            </div>
+            <div class="row mb-1">
+                <div class="col-12">
+                    <strong>Profesional</strong> : {{turno.profesional!.nombre | capitalize}} {{turno.profesional!.apellido | capitalize}}
+                </div>                
+            </div>  
+            <div class="row mb-2">
+                <div class="col-12">
+                    <strong>Especialidad</strong> : {{turno.especialidad}}
+                </div>                
+            </div>
+            <div class="row mb-1" *ngIf="turno.razonCancelacion !== undefined">
+                <div class="col-4"><strong>Razon de cancelacion</strong></div>
+                <div class="col-1"> : </div>
+                <div class="col-7">{{turno.razonCancelacion}}</div>
+            </div> 
+            <div class="row mb-1" *ngIf="turno.razonRechazo !== undefined">
+                <div class="col-4"><strong>Razon de rechazo</strong></div>
+                <div class="col-1"> : </div>
+                <div class="col-7">{{turno.razonRechazo}}</div>
+            </div>                                  
+        </mat-card-content>
+    </mat-card>
+</div>
+
+
+

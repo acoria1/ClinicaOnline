@@ -1,17 +1,36 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AltaHorariosComponent } from './components/alta-horarios/alta-horarios.component';
 import { HomeComponent } from './components/home/home.component';
+import { InformesComponent } from './components/informes/informes.component';
 import { LoginComponent } from './components/login/login.component';
 import { MiPerfilComponent } from './components/mi-perfil/mi-perfil.component';
+import { NotAuthorizedComponent } from './components/not-authorized/not-authorized.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { MisPacientesComponent } from './components/profesionales/mis-pacientes/mis-pacientes.component';
 import { RegisterComponent } from './components/register/register.component';
+import { RegistroAdminComponent } from './components/registro-admin/registro-admin.component';
+import { NuevoTurnoComponent } from './components/turnos/nuevo-turno/nuevo-turno.component';
+import { TurnosComponent } from './components/turnos/turnos.component';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { AdminGuard } from './guards/admin.guard';
 import { AuthGuard } from './guards/auth.guard';
+import { HabilitadoGuard } from './guards/habilitado.guard';
+import { ProfesionalGuard } from './guards/profesional.guard';
 
 const routes: Routes = [
-  {path: 'home' , component: HomeComponent},
-  {path: 'login' , component: LoginComponent},
-  {path: 'register' , component: RegisterComponent},
-  {path: 'mi-perfil' , component: MiPerfilComponent},
+  {path: 'home' , component: HomeComponent, data : { animation : 'HomePage'}},
+  {path: 'login' , component: LoginComponent, data : { animation : 'LoginPage'}},
+  {path: 'register' , component: RegisterComponent, data : { animation : 'RegisterPage'}},
+  {path: 'mi-perfil' , component: MiPerfilComponent, canActivate : [AuthGuard]},
+  {path: 'usuarios' , component: UsuariosComponent, canActivate : [AdminGuard]},
+  {path: 'register-admin' , component: RegistroAdminComponent, canActivate : [AdminGuard]},
+  {path: 'alta-horarios' , component: AltaHorariosComponent, canActivate : [ProfesionalGuard, HabilitadoGuard]},
+  {path: 'nuevo-turno' , component: NuevoTurnoComponent, canActivate : [AuthGuard, HabilitadoGuard]},
+  {path: 'mis-turnos' , component: TurnosComponent, canActivate : [AuthGuard, HabilitadoGuard]},
+  {path: 'mis-pacientes' , component: MisPacientesComponent, canActivate : [ProfesionalGuard, HabilitadoGuard]},
+  {path: 'informes' , component: InformesComponent, canActivate : [AdminGuard]},
+  {path: 'not-authorized' , component: NotAuthorizedComponent, canActivate : [AuthGuard], data : { animation : 'NotAuthorizedPage'}},  
   {path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];
 

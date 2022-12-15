@@ -1,0 +1,83 @@
+<div class="container-fluid p-4">
+  <ng-container *ngIf="historiaClinicaFiltered !== undefined; else loadingSpinner">
+    <div class="row d-flex align-items-center">
+      <div class="col-2">
+        <mat-form-field *ngIf="profesional == undefined" appearance="outline">
+          <mat-label>Profesional</mat-label>
+          <mat-select [(value)]="profesionalSeleccionado" (selectionChange)="filtrarPorProfesional()">
+            <mat-option [value]="'todos'">Todos</mat-option>
+            <mat-option *ngFor="let prof of profesionalesFilter" [value]="prof">
+              {{prof}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-10 d-flex justify-content-end">
+        <button (click)="downloadPdf()" mat-flat-button color="accent" [hidden]="historiaClinicaFiltered.length == 0">Descargar PDF<mat-icon>download</mat-icon></button>
+      </div>
+    </div>
+    <div class="row" *ngIf="historiaClinicaFiltered.length > 0; else noData">
+      <div class="col-12 mat-elevation-z5 p-3 mb-2" *ngFor="let h of historiaClinicaFiltered" appHighligth="#daf9f6">
+        <div class="row">
+          <div class="h3 text-secondary">{{h.fecha}}</div>
+        </div>
+        <div class="row">
+          <div class="col-12 h4 mb-2 text-primary">
+            <div><strong>Profesional</strong> : {{h.profesional}}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3"><strong>Temperatura : </strong></div>
+          <div class="col-8 offset-1">
+            <div class="row">{{h.historiaClinica.temperatura}}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3"><strong>Peso (Kg) : </strong></div>
+          <div class="col-8 offset-1">
+            <div class="row">{{h.historiaClinica.pesoKG}}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3"><strong>Altura : </strong></div>
+          <div class="col-8 offset-1">
+            <div class="row">{{h.historiaClinica.alturaCM}}</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3"><strong>Presion : </strong></div>
+          <div class="col-8 offset-1">
+            <div class="row">{{h.historiaClinica.presion}}</div>
+          </div>
+        </div>
+        <ng-container *ngIf="h.historiaClinica.datosAdicionales !== undefined">
+          <div class="row" *ngFor="let dato of h.historiaClinica.datosAdicionales | keyvalue">
+            <div class="col-3"><strong>{{dato.key}} : </strong></div>
+            <div class="col-8 offset-1">
+              <div class="row">{{dato.value}}</div>
+            </div>
+          </div>
+        </ng-container>
+        <div class="row mt-3">
+          <div class="col-12">
+            <button mat-flat-button color="primary" class="w-100" (click)="mostrarResenia(h)">Ver Reseña</button>
+          </div>
+        </div>        
+      </div>
+    </div>
+    
+  </ng-container>
+</div>
+
+<ng-template #noData>
+  <div class="col-12 mat-elevation-z5 p-3 mb-2">
+    <div class="h4">No hay historial clinico</div>
+  </div>
+</ng-template>
+<ng-template #loadingSpinner>
+  <div class="row mt-5">
+      <div class="spinner">
+          <mat-spinner color="accent"></mat-spinner>
+      </div>
+  </div>    
+</ng-template>

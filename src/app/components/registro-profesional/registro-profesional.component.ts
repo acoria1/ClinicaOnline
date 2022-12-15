@@ -7,6 +7,10 @@ import { User } from 'src/app/Entities/user';
 import { Especialidad } from 'src/app/Entities/especialidad';
 import { UsersService } from 'src/app/services/users.service';
 import { Profesional } from 'src/app/Entities/profesional';
+import { Router } from '@angular/router';
+import { lastValueFrom } from 'rxjs';
+import { CaptchaDialogComponent } from 'src/app/dialogs/captcha-dialog/captcha-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-registro-profesional',
@@ -27,7 +31,7 @@ export class RegistroProfesionalComponent implements OnInit {
   especialidades : Especialidad[] = [];
   buffering = false;
 
-  constructor(public auth: AuthService, private fb: FormBuilder, public usersService : UsersService) { }
+  constructor(public auth: AuthService, private fb: FormBuilder, public usersService : UsersService, private router : Router, public dialog : MatDialog) { }
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -49,24 +53,33 @@ export class RegistroProfesionalComponent implements OnInit {
     this.hidePassword[index] = !this.hidePassword[index];
   }
 
-  handleRegister(){
+  async handleRegister(){
     if(!this.imagenCargada()){
       this.loadedImage = false;
       return;
     }
-
+    let captchaPassed = await lastValueFrom(this.dialog.open(CaptchaDialogComponent).afterClosed());
+    if (!captchaPassed){
+      return;
+    }
     this.buffering = true;
     this.usersService.registerNewUser(
       this.constructUser(),
       this.registerForm.get('password')!.value,
       this.profileImages)
-      .catch((error) => {
-        this.buffering = false; 
-        if (error.code === "auth/email-already-in-use"){
-          this.emailAlreadyInUse = true;
-        } 
-        else if (error.code === "auth/invalid-email"){          
-          this.invalidEmail = true;
+      .then((response)=>{
+        if (response == "success"){
+          setTimeout(() => {
+            this.router.navigate(['alta-horarios']);
+          }, 2200);          
+        } else {
+          this.buffering = false;
+          if ((<{ code : string, customData : any, name : string}>response).code === "auth/email-already-in-use"){
+            this.emailAlreadyInUse = true;
+          } 
+          else if ((<{ code : string, customData : any, name : string}>response).code === "auth/invalid-email"){         
+            this.invalidEmail = true;
+          }  
         }
       });
   }

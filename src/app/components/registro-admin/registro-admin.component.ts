@@ -5,6 +5,7 @@ import { CustomValidator } from 'src/app/Entities/custom-validator';
 import { MyErrorStateMatcher } from 'src/app/Entities/my-error-state-matcher';
 import { User } from 'src/app/Entities/user';
 import { UsersService } from 'src/app/services/users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro-admin',
@@ -22,7 +23,7 @@ export class RegistroAdminComponent implements OnInit {
   loadedImages : Boolean = true;
   buffering = false;
 
-  constructor(public auth: AuthService, private fb: FormBuilder, public usersService : UsersService) { }
+  constructor(public auth: AuthService, private fb: FormBuilder, public usersService : UsersService, private router : Router) { }
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -54,6 +55,9 @@ export class RegistroAdminComponent implements OnInit {
       this.constructUser(),
       this.registerForm.get('password')!.value,
       this.profileImages)
+      .then(()=>{
+        this.router.navigate(['home']);
+      })
       .catch((error) => {
         this.buffering = false;        
         if (error.code === "auth/email-already-in-use"){
@@ -73,7 +77,9 @@ export class RegistroAdminComponent implements OnInit {
       this.registerForm.get('edad')!.value,   
       this.registerForm.get('dni')!.value,
       [],
-      true
+      true,
+      undefined,
+      "Admin"
       )
   }
 

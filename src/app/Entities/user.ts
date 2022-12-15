@@ -1,15 +1,3 @@
-export interface UserAuthData {
-    uid: string;
-    email: string;
-    displayName: string;
-    photoURL: string;
-    emailVerified: boolean;
-    metadata : { 
-        creationTime : string, 
-        lastSignInTime : string 
-    }
-}
-
 export class User{
 
     public uid? : string;
@@ -20,8 +8,9 @@ export class User{
     public dni: string;
     public isAdmin : boolean;
     public imagenes : string[];
+    public typename : string;
 
-    constructor(email : string, nombre: string,apellido: string,edad: number, dni : string, imagenes : string[], isAdmin : boolean = false, uid? : string){
+    constructor(email : string, nombre: string,apellido: string,edad: number, dni : string, imagenes : string[], isAdmin : boolean = false, uid? : string, typename : 'User' | 'Admin' = "User"){
         this.uid = uid;
         this.email = email;
         this.nombre = nombre;
@@ -30,5 +19,14 @@ export class User{
         this.dni = dni;
         this.imagenes = imagenes;
         this.isAdmin = isAdmin;
+        this.typename = typename;
+    }
+
+    static filterPrivate(user : any){
+        return Object.fromEntries(
+            Object.entries(user)
+            .filter(([key]) => !['uid'].includes(key))
+        );
     }
 }
+

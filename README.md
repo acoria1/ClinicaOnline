@@ -1,27 +1,68 @@
-# ClinicaOnline
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.0.
+# **TP-Clinica-Online**
 
-## Development server
+Nuestro sistema, permite tener todo el control y manejo sobre una clinica. 
+Permite el alta, baja y modificacion de los distintos perfiles, con sus respectivos atributos, la reserva de turnos y devolucion de la consutla luego de ser atendido.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Horarios atencion 🕜
 
-## Code scaffolding
+```
+lunes a viernes en el horario de 8:00 a 19:00.
+sábados en el horario de 9:00 a 14:00.
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Solicitar Turno ➕
 
-## Build
+![principal](https://github.com/AlejandroLaborde/TP-Clinica-Online/blob/master/imagenes_readme/reserva.gif)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Usuarios 🔧
 
-## Running unit tests
+_Tenemos 3 tipos de usuarios, ADMINISTRADOR, PROFESIONAL y USUARIO_
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+ADMINISTRADOR_ 
+Puede agregar a otros administradores al sistema, y es el unico que puede aceptar a los profesionales para atender en la clinica.
+Este mismo puede realizar alta de especialidades, para que esten disponibles en el area de registro.
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```
 
-## Further help
+```
+PROFESIONAL_ 
+Se registra como profesional de la clinica, y debe ser aceptado para atender en la misma.
+Una vez dentro del sistema, puede configurar el tiempo de sus turnos y agregar especialidades de ser necesario.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```
+
+```
+USUARIO_ 
+Se registra en el sistema con dos imagenes, puede reservar turnos eligiendo el profesional o la especialidad.
+Luego de esto, puede ser atendido, y responder un cuestionario sobre la atencion recibida.
+
+Desde la pestaña de mi perfil, podrás ver y descargar tu historial clínico
+
+```
+
+### Ingreso 🏥
+
+![principal](https://github.com/AlejandroLaborde/TP-Clinica-Online/blob/master/imagenes_readme/ingreso.gif)
+
+### Registro ➕
+
+![principal](https://github.com/AlejandroLaborde/TP-Clinica-Online/blob/master/imagenes_readme/registro.gif)
+
+### Mis Turnos
+En esta sección podrás ver todos tus turnos pedidos, cancelados, finalizados. A su vez podrás acceder a la reseña del turno luego de su finalización. También podrás realizar una encuesta de satisfacción correspondiente a la atención recibida
+
+### Informes 
+
+![principal](https://github.com/AlejandroLaborde/TP-Clinica-Online/blob/master/imagenes_readme/graficos.gif)
+
+## Despliegue 📦
+
+_El sistema esta deployado en firebase_
+```
+https://clinica-online.firebaseapp.com/
+```
+
+

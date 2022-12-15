@@ -1,0 +1,25 @@
+<div class="container-fluid px-4 pt-3 pb-5 ">
+    <!-- bg-dark text-ligth long-page -->
+    <div class="row">
+        <div class="col-12 ">
+            <h1 class="text-center">SELECCIONAR PACIENTE</h1>
+        </div>
+    </div>
+    <div class="row mb-5">
+        <mat-form-field>
+            <!--  class="mat-input-ligth" -->
+            <input class="" (keyup)="applyFilter($event)" matInput placeholder="Filter">
+        </mat-form-field>
+    </div>
+    <div class="row">
+        <app-listado-pacientes
+        *ngIf="this.pacientes != undefined else loadingSpinner" [pacientes]="pacientes"
+        [filterValue]="filterValue" [displayedColumns]="['nombre','apellido','dni','obraSocial', 'imagen']"
+        (pacienteSeleccionadoEvent)="onPacienteSeleccionado($event)"></app-listado-pacientes>
+    </div>    
+</div>
+<ng-template #loadingSpinner>
+    <div class="spinner">
+        <mat-spinner color="accent"></mat-spinner>
+    </div>
+</ng-template>

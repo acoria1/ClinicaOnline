@@ -3,18 +3,31 @@
       <a routerLink="home" routerLinkActive="router-link-active"  class="home">Pagina Principal</a>
     </div>
     <div class="nav-tool-items">
-      <a mat-button mat-raised-button color="basic" routerLink="login" routerLinkActive="active" class="nav-bar-items">Ingreso</a>
-      <a mat-button mat-raised-button color="accent" routerLink="register" routerLinkActive="active" class="nav-bar-items">Registrarse</a>
+      <a mat-button mat-raised-button color="basic" routerLink="login" routerLinkActive="active" class="nav-bar-items mr-2">Ingreso</a>
+      <a mat-button mat-raised-button color="accent" routerLink="register" routerLinkActive="active" class="nav-bar-items mr-2">Registrarse</a>
     </div>
 </mat-toolbar>
+
 <ng-template #loggedInNavBar>
   <mat-toolbar color="primary" class="app-header">
     <div>
       <a routerLink="home" routerLinkActive="router-link-active"  class="home">Pagina Principal</a>
     </div>
     <div class="nav-tool-items">
-      <a *ngIf="auth.isVerified" mat-button mat-raised-button color="basic" routerLink="leaderboards" routerLinkActive="active" class="nav-bar-items">
+      <a *ngIf="auth.isAdmin || auth.isPaciente" mat-button mat-raised-button color="warn" routerLink="nuevo-turno" routerLinkActive="active" class="nav-bar-items mr-2">
+        Sacar Turno
+      </a>
+      <a mat-button mat-raised-button color="warn" routerLink="mis-turnos" routerLinkActive="active" class="nav-bar-items mr-2">
+        Mis Turnos
+      </a>
+      <a *ngIf="auth.isProfesional" mat-button mat-raised-button color="accent" routerLink="mis-pacientes" routerLinkActive="active" class="nav-bar-items mr-2">
+        Mis Pacientes
+      </a>
+      <a *ngIf="auth.isAdmin" mat-button mat-raised-button color="accent" routerLink="usuarios" routerLinkActive="active" class="nav-bar-items mr-2">
         Usuarios
+      </a>
+      <a *ngIf="auth.isProfesional" mat-button mat-raised-button color="accent" routerLink="alta-horarios" routerLinkActive="active" class="nav-bar-items mr-2">
+        Horarios
       </a>
         <mat-menu #appMenu="matMenu" xPosition="before" yPosition="below">
           <button mat-menu-item (click)="handleLogOut()">Log Out</button>
@@ -26,6 +39,8 @@
     </div>
   </mat-toolbar>
 </ng-template>
-<router-outlet></router-outlet>
+<div [@routeAnimations]="getRouteAnimationData()">
+    <router-outlet></router-outlet>
+</div>
 
 

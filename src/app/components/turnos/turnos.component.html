@@ -1,0 +1,157 @@
+<div class="container-fluid mt-3 pb-5">
+    <mat-accordion class="example-headers-align" multi>
+        <mat-expansion-panel [(expanded)]="mostrarFiltros">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <strong>Filtros</strong>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="row p-3 d-flex">
+                <div class="col-2 d-flex align-items-center">
+                    <div class="h4">Filtros principales</div>
+                </div>
+                <div class="col-10">
+                    <div class="row">
+                        <div class="col-3" *ngIf="!auth.isProfesional">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Profesional</mat-label>
+                                <input type="text" [(ngModel)]="filtroProfesional" matInput placeholder="Profesional">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-3">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Especialidad</mat-label>
+                                <input type="text" [(ngModel)]="filtroEspecialidad" matInput placeholder="Especialidad">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-3" *ngIf="auth.isProfesional || auth.isAdmin">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Paciente</mat-label>
+                                <input type="text" [(ngModel)]="filtroPaciente" matInput placeholder="Paciente" >
+                            </mat-form-field>
+                        </div>
+                        <div class="col-3">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Estado del turno</mat-label>
+                                <input type="text" [(ngModel)]="filtroEstado" matInput placeholder="Estado del turno" >
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>            
+            </div>
+            <div class="row p-3">
+                <div class="col-2 d-flex align-items-center">
+                    <div class="h4">Filtros avanzados</div>
+                </div>
+                <div class="col-10">
+                    <!-- Filtros de peso, altura y presion-->
+                    <div class="row">
+                        <div class="col-4 d-flex flex-row justify-content-around">
+                            <div class="d-flex align-items-center mr-1">Peso:</div>
+                            <div class="d-flex align-items-center mr-1">
+                                <mat-form-field appearance="outline" class="mat-input-short">
+                                    <mat-label>Operador</mat-label>
+                                    <mat-select [(value)]="filtrosHistoriaClinica.filtroPeso.operador">
+                                      <mat-option *ngFor="let operador of operadores" [value]="operador">
+                                        {{operador}}
+                                      </mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <mat-form-field appearance="outline" class="mat-input-short">
+                                    <mat-label>Kg</mat-label>
+                                    <input type="number" [(ngModel)]="filtrosHistoriaClinica.filtroPeso.valor" matInput placeholder="Peso" >
+                                </mat-form-field>
+                            </div>            
+                        </div>
+                        <div class="col-4 d-flex flex-row justify-content-around">
+                            <div class="d-flex align-items-center mr-1">Altura:</div>
+                            <div class="d-flex align-items-center mr-1">
+                                <mat-form-field appearance="outline" class="mat-input-short">
+                                    <mat-label>Operador</mat-label>
+                                    <mat-select [(value)]="filtrosHistoriaClinica.filtroAltura.operador">
+                                      <mat-option *ngFor="let operador of operadores" [value]="operador">
+                                        {{operador}}
+                                      </mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <mat-form-field appearance="outline" class="mat-input-short">
+                                    <mat-label>Cm</mat-label>
+                                    <input type="number" [(ngModel)]="filtrosHistoriaClinica.filtroAltura.valor" matInput placeholder="Altura" >
+                                </mat-form-field>
+                            </div>            
+                        </div>
+                        <div class="col-4 d-flex flex-row justify-content-around">
+                            <div class="d-flex align-items-center mr-1">Presion:</div>
+                            <div class="d-flex align-items-center mr-1">
+                                <mat-form-field appearance="outline" class="mat-input-short">
+                                    <mat-label>Presion</mat-label>
+                                    <input type="text" [(ngModel)]="filtrosHistoriaClinica.filtroPresion.valor" matInput placeholder="Presion">
+                                  </mat-form-field>
+                            </div>          
+                        </div>
+                    </div>
+                    <!-- Filtros de temperatura y datos adicionales -->
+                    <div class="row">
+                        <div class="col-5 d-flex flex-row justify-content-around">
+                            <div class="d-flex align-items-center mr-1">Temperatura:</div>
+                            <div class="d-flex align-items-center mr-1">
+                                <mat-form-field appearance="outline" class="mat-input-short">
+                                    <mat-label>Operador</mat-label>
+                                    <mat-select [(value)]="filtrosHistoriaClinica.filtroTemperatura.operador">
+                                      <mat-option *ngFor="let operador of operadores" [value]="operador">
+                                        {{operador}}
+                                      </mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <mat-form-field appearance="outline" class="mat-input-short">
+                                    <mat-label>Cº</mat-label>
+                                    <input type="number" [(ngModel)]="filtrosHistoriaClinica.filtroTemperatura.valor" matInput placeholder="Temperatura" >
+                                </mat-form-field>
+                            </div>            
+                        </div>
+                        <div class="col-7 d-flex flex-row justify-content-around">
+                            <div class="d-flex align-items-center mr-1">Otro:</div>
+                            <mat-form-field appearance="outline" class="mat-input-long">
+                                <mat-label>Datos Adicionales</mat-label>
+                                <input type="text" [(ngModel)]="filtroDatosAdicionales" matInput placeholder="Datos Adicionales">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-5 offset-1">
+                    <button mat-flat-button color="warn" (click)="applyFilters()" class="w-100">Aplicar filtros</button>
+                </div>
+                <div class="col-5">
+                    <button mat-flat-button color="warn" (click)="resetFilters()" class="w-100">Limpiar filtros</button>
+                </div>
+            </div>
+          </mat-expansion-panel>
+          <mat-expansion-panel expanded>
+            <mat-expansion-panel-header >
+                <mat-panel-title>
+                    <strong>Turnos</strong>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div class="row" *ngIf="filteredTurnos.length > 0; else sinTurnos">
+                <app-listado-turnos [turnos]="filteredTurnos" (accionDisparadaEvent)="onAccion($event)"></app-listado-turnos>
+            </div>
+          </mat-expansion-panel>
+    </mat-accordion>
+</div>
+
+<ng-template #sinTurnos>
+    <div class="public mt-5 rounded-2 border border-primary mx-3 p-3">
+        <div class="row">
+            <div class="mat-display-3 text-center ">No hay turnos para mostrar</div>
+            <button *ngIf="!auth.isProfesional" class="btn btn-primary" (click)="goToNuevoTurno()">Saca un turno ya</button>
+        </div>
+    </div>
+</ng-template>

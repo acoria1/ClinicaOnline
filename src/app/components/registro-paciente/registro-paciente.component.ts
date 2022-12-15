@@ -7,6 +7,10 @@ import { User } from 'src/app/Entities/user';
 // import { FilesService } from 'src/app/services/files.service';
 import { UsersService } from 'src/app/services/users.service';
 import { Paciente } from 'src/app/Entities/paciente';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { CaptchaDialogComponent } from 'src/app/dialogs/captcha-dialog/captcha-dialog.component';
+import {lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-registro-paciente',
@@ -25,7 +29,7 @@ export class RegistroPacienteComponent implements OnInit {
   loadedImages : Boolean = true;
   buffering = false;
 
-  constructor(public auth: AuthService, private fb: FormBuilder, public usersService : UsersService) { }
+  constructor(public auth: AuthService, private fb: FormBuilder, public usersService : UsersService, private router : Router, private dialog : MatDialog) { }
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -53,20 +57,28 @@ export class RegistroPacienteComponent implements OnInit {
       this.loadedImages = false;
       return;
     }
+    let captchaPassed = await lastValueFrom(this.dialog.open(CaptchaDialogComponent).afterClosed());
+    if (!captchaPassed){
+      return;
+    }
     this.buffering = true;
     this.usersService.registerNewUser(
       this.constructUser(),
       this.registerForm.get('password')!.value,
       this.profileImages)
-      .catch((error) => {
-        this.buffering = false;        
-        if (error.code === "auth/email-already-in-use"){
-          this.emailAlreadyInUse = true;
-        } 
-        else if (error.code === "auth/invalid-email"){          
-          this.invalidEmail = true;
+      .then((response)=>{
+        if (response == "success"){
+          this.router.navigate(['home'])
+        } else {
+          this.buffering = false;
+          if ((<{ code : string, customData : any, name : string}>response).code === "auth/email-already-in-use"){
+            this.emailAlreadyInUse = true;
+          } 
+          else if ((<{ code : string, customData : any, name : string}>response).code === "auth/invalid-email"){         
+            this.invalidEmail = true;
+          }  
         }
-      });
+      })   
   }
 
   constructUser() : Paciente{
@@ -76,8 +88,8 @@ export class RegistroPacienteComponent implements OnInit {
       this.registerForm.get('apellido')!.value,
       this.registerForm.get('edad')!.value,
       this.registerForm.get('dni')!.value,
+      [],
       this.registerForm.get('obraSocial')!.value,      
-      []
       )    
   }
 

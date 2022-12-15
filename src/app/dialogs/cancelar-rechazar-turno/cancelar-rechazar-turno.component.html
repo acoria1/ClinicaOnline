@@ -1,0 +1,14 @@
+<div class="container-fluid">
+    <h1 mat-dialog-title class="text-center">{{data.accion.toUpperCase()}} TURNO</h1>
+    <div mat-dialog-content>
+        <p>¿Cuál es la razón?</p>
+        <mat-form-field appearance="fill" class="w-100">
+            <mat-label class="w-100">Comentario</mat-label>
+            <textarea rows="4" cols="80" class="w-100" matInput [(ngModel)]="data.razon"></textarea>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions class="justify-content-around">
+        <button mat-flat-button color="warn" (click)="onNoClick()">Volver</button>
+        <button mat-flat-button color="primary" [mat-dialog-close]="data.razon" cdkFocusInitial>Confirmar</button>
+    </div>
+</div>

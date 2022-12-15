@@ -1,0 +1,8 @@
+<div  class="card">
+    <div class="card-body">
+        <app-turno-detalle [turno]="turno"></app-turno-detalle>
+    </div>
+    <div *ngIf="acciones.length > 0" class="card-footer w-100">
+        <button *ngFor="let accion of acciones" class="w-100 mb-1" mat-flat-button [color]=" accion.accion == 'CANCELAR' ? 'accent' : (accion.accion == 'RECHAZAR' ? 'warn' : 'primary') " (click)="onAccionDisparada(accion)">{{accion.accion}}</button>
+    </div>
+</div>

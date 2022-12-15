@@ -1,0 +1,18 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4">
+            
+        </div>
+        <div class="col-4">
+
+        </div>
+        <div class="col-4">
+
+        </div>
+    </div>
+    <div class="row row-cols-3 g-3">
+        <div *ngFor="let turno of turnos" class="col">
+            <app-modificar-estado-turno [turno]="turno" (accionDisparadaEvent)="onAccion($event, turno)"></app-modificar-estado-turno>
+        </div>        
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<h2 mat-dialog-title> HISTORIA CLINICA </h2>
+<mat-dialog-content>
+    <div class="container">
+        <div class="row mb-1">
+            <div class="col-4">
+                <strong>Altura </strong>(CM) : {{data.historia.alturaCM}}
+            </div>
+            <div class="col-4">
+                <strong>Peso </strong>(KG) : {{data.historia.pesoKG}}
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-4">
+                <strong>Temperatura </strong>(ºC) : {{data.historia.temperatura}}
+            </div>
+            <div class="col-4">
+                <strong>Presion </strong> : {{data.historia.presion}}
+            </div>
+        </div>
+        <div class="row">
+            <strong>Datos Adicionales</strong>
+        </div>
+        <div *ngFor="let item of datosAdicionales" class="row">
+            <div class="col-3">{{item.key}}</div>
+            <div class="col-1">:</div>
+            <div class="col-8">{{item.value}}</div>
+        </div>
+    </div>
+</mat-dialog-content>

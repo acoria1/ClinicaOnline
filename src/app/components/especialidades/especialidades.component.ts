@@ -17,6 +17,7 @@ export class EspecialidadesComponent implements OnInit {
   loading = true;
   updating = false;
 
+  @Input() permitirNuevasEspecialidades? : boolean = true;
   @Output() especialidadAgregada = new EventEmitter<Especialidad[]>();
   @Output() especialidadesCargadas = new EventEmitter<void>();
 

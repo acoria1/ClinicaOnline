@@ -1,0 +1,38 @@
+<div *ngIf="profesional != undefined" class="container pb-5">
+    <div class="row">
+        <div *ngFor="let item of profesional!.horarios;let index = index;" class="col-6 col-md-4 my-4">
+            <mat-card class="text-light bg-dark">
+                <mat-card-header>
+                    <mat-card-title><strong>{{item.dia}}</strong></mat-card-title>
+                </mat-card-header>
+                <hr>
+                <mat-card-content>
+                    <div class="mb-2">
+                        Inicia : <input type="time" step='3600' min="08:00" max="19:00" [(ngModel)]="profesional!.horarios[index].inicia" placeholder="Inicia">
+                    </div>
+                    <div class="mb-2">
+                        Finaliza : <input type="time" step='3600' min="08:00" max="19:00" [(ngModel)]="profesional!.horarios[index].finaliza" placeholder="Finaliza">
+                    </div>
+                    <div class="mb-2">
+                        Duracion : <input  type="number" step='5' min="15" max="60"[(ngModel)]="profesional!.horarios[index].duracion" placeholder="Duracion">
+                    </div>
+                    <div class="mb-2">
+                        Especialidad :
+                        <mat-radio-group name="{{'group' + index}}"
+                        class="esp-radio-group" [(ngModel)]="profesional!.horarios[index].especialidad">
+                            <mat-radio-button *ngFor="let esp of profesional!.especialidades" [value]="esp.descripcion"
+                            class="esp-radio-btn">{{esp.descripcion}}</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </mat-card-content>
+                <button class="w-100" mat-flat-button (click)="item.atiende = !item.atiende" [color]="item.atiende ? 'primary' : 'warn'">{{item.atiende ? '¡SI ATIENDO!' : 'NO ATIENDO'}}</button>
+            </mat-card>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-12">
+            <button class="w-100" style="height: 100px;" mat-flat-button (click)="guardarHorarios()" color="accent">GUARDAR CAMBIOS</button>
+        </div>
+    </div>
+</div>

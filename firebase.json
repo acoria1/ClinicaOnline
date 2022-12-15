@@ -3,7 +3,9 @@
     "target": "ClinicaOnline",
     "public": "dist/clinica-online",
     "ignore": [
-      "**/.*"
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
     ],
     "headers": [
       {
@@ -31,5 +33,12 @@
         "destination": "/index.html"
       }
     ]
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "storage": {
+    "rules": "storage.rules"
   }
 }

@@ -3,4 +3,5 @@ export interface Feature {
     color : string;
     label : string;
     backgroundImg : string;
+    backgroundColor? : string;
 }

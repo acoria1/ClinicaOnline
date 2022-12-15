@@ -114,11 +114,14 @@
             "prerender": false,
             "ssr": false,
             "browserTarget": "ClinicaOnline:build:production",
-            "firebaseProject": "clinica-online-b2a90",
-            "firebaseHostingSite": "clinica-online-b2a90"
+            "firebaseProject": "clinica-online-ed9da",
+            "firebaseHostingSite": "clinica-online-ed9da"
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

@@ -1,14 +1,17 @@
 {
+  "projects": {
+    "default": "clinica-online-ed9da"
+  },
   "targets": {
-    "clinica-online-b2a90": {
+    "clinica-online-ed9da": {
       "hosting": {
         "ClinicaOnline": [
-          "clinica-online-b2a90"
+          "clinica-online-ed9da"
         ]
       }
     }
   },
-  "projects": {
-    "default": "clinica-online-b2a90"
-  }
+  "etags": {}
 }
+
+

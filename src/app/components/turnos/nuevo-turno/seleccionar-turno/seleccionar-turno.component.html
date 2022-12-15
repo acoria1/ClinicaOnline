@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="row">
+        <div class="mat-display-1 text-center my-0">{{fecha.dia.toUpperCase()}}</div>
+        <div class="mat-display-1 text-center mt-1 mb-2">{{fecha.fecha}}</div>
+    </div>
+    <div class="row">
+        <app-custom-buttons [buttons]="turnoButtons" (buttonClicked)="onTurnoSeleccionado($event)" [classWrapper]="'feature-container-turnos'" [columns]="6" gutterSize="2%"></app-custom-buttons>
+    </div>
+</div>
+

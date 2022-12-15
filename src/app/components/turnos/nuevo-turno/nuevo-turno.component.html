@@ -1,0 +1,127 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="mat-display-3 text-center pt-4 mb-0">SACAR TURNO</div>
+    </div>
+    <div class="row">
+        <mat-stepper orientation="horizontal" [linear]="true" #stepper>
+            <mat-step *ngIf="auth.isAdmin" [completed]="pacienteSeleccionado !== undefined">
+                <ng-template matStepLabel>Elegir Paciente</ng-template>
+                <ng-template matStepContent>
+                    <div class="row">
+                        <app-seleccionar-paciente *ngIf="pacientes" [pacientes]="pacientes" (pacienteSeleccionadoEvent)="setPacienteSeleccionado($event)">
+                        </app-seleccionar-paciente>  
+                    </div>                      
+                </ng-template>
+            </mat-step>
+            <mat-step [completed]="profesionalSeleccionado !== undefined">
+                <ng-template matStepLabel>Elegir Profesional</ng-template>
+                <ng-template matStepContent>
+                    <div class="row">
+                        <app-seleccionar-profesional *ngIf="profesionales" [profesionales]="profesionales" (profesionalSeleccionadoEvent)="setProfesionalSeleccionado($event)">
+                        </app-seleccionar-profesional>  
+                    </div>                      
+                </ng-template>
+            </mat-step>
+            <mat-step [completed]="especialidadSeleccionada !== undefined">
+                <ng-template matStepLabel>Seleccionar Especialidad</ng-template>
+                <ng-template matStepContent>
+                    <div class="row mt-2 mb-5">
+                        <div class="col-5">
+                            <app-profesional-detalle [profesional]="profesionalSeleccionado"></app-profesional-detalle>
+                        </div>
+                        <div class="col-7">
+                            <app-seleccionar-especialidad [profesional]="profesionalSeleccionado!" (especialidadSeleccionadaEvent)="setEspecialidadSeleccionada($event)"></app-seleccionar-especialidad>
+                        </div>
+                    </div>
+                    <div class="row justify-content-around">
+                        <div class="col-2">
+                            <button mat-flat-button matStepperPrevious class="w-100" color="warn">Volver</button>
+                        </div>
+                        <div class="col-2">
+                            <button mat-flat-button matStepperNext  class="w-100" color="accent">Siguiente</button>
+                        </div>                        
+                      </div>
+                </ng-template>        
+            </mat-step>
+            <mat-step [completed]="fecha !== undefined">
+                <ng-template matStepLabel>Elegir Fecha</ng-template>
+                <ng-template matStepContent>
+                    <div class="row mt-2 mb-4">
+                        <app-seleccionar-dia [profesional]="profesionalSeleccionado!" [especialidad]="especialidadSeleccionada!" (fechaSeleccionadaEvent)="onFechaSeleccionada($event)">
+                        </app-seleccionar-dia>
+                    </div>
+                    <div class="row justify-content-around">
+                        <div class="col-2">
+                            <button mat-flat-button matStepperPrevious class="w-100" color="warn">Volver</button>
+                        </div>
+                        <div class="col-2">
+                            <button mat-flat-button matStepperNext class="w-100" color="accent">Siguiente</button>
+                        </div>                        
+                      </div>
+                </ng-template>
+            </mat-step>
+            <mat-step [completed]="turno !== undefined">
+                <ng-template matStepLabel>Elegir Turno</ng-template>
+                <ng-template matStepContent>
+                    <div class="row mb-3">
+                        <app-seleccionar-turno [profesional]="profesionalSeleccionado!" [especialidad]="especialidadSeleccionada!" [fecha]="fecha!" (turnoSeleccionadoEvent)="onTurnoSeleccionado($event)">
+                        </app-seleccionar-turno>
+                    </div>
+                    <div class="row justify-content-around">
+                        <div class="col-2">
+                            <button mat-flat-button matStepperPrevious class="w-100" color="warn">Volver</button>
+                        </div>
+                        <div class="col-2">
+                            <button mat-flat-button matStepperNext class="w-100" color="accent">Siguiente</button>
+                        </div>                        
+                      </div>
+                </ng-template>
+            </mat-step>
+            <mat-step [completed]="false">
+              <ng-template matStepLabel>Confirmar</ng-template>
+              <ng-template matStepContent>
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="mat-display-1 text-center">Confirmar Turno</div>
+                    </div>                    
+                </div>
+                <div class="row ">
+                    <div class="col-4 offset-4">
+                        <app-turno-detalle [turno]="turno!"></app-turno-detalle>
+                    </div>    
+                </div>
+                <div class="row">
+                    <div class="col-4 offset-4">
+                        <button mat-flat-button (click)="onTurnoConfirmado()" class="w-100" color="primary">CONFIRMAR</button>
+                    </div>
+                </div>
+              </ng-template>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Finalizado</ng-template>
+                <ng-template matStepContent>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mat-display-1 text-center mb-1">Turno pedido con éxito </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 offset-4 mb-3">
+                            <img class="img-fluid" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Eo_circle_green_white_checkmark.svg/2048px-Eo_circle_green_white_checkmark.svg.png" alt="ok.png">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <button mat-flat-button (click)="goHome()" class="w-100" color="primary">Pagina Principal</button>
+                        </div>
+                        <div class="col-6">
+                            <button mat-flat-button (click)="resetForm()" class="w-100" color="accent">Sacar otro turno</button>
+                        </div>
+                    </div>
+                </ng-template>
+            </mat-step>
+          </mat-stepper>
+    </div>
+</div>
+
+  

@@ -17,21 +17,23 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-            <div>O agrega tu especialidad:</div>
-            <div class="nueva-especialidad">            
-                <div>
-                    <mat-form-field appearance="outline">
-                        <mat-label>Nueva Especialidad</mat-label>
-                        <input matInput type="text" name="nuevaEspecialidad" [(ngModel)] = "nuevaEspecialidad">
-                    </mat-form-field>
-                    <mat-error *ngIf="nuevaEspecialidadYaExiste">
-                        La especialidad ya existe
-                    </mat-error>
-                </div>            
-                <div>
-                    <button [disabled]="nuevaEspecialidad.length === 0 || nuevaEspecialidadYaExiste " mat-raised-button (click)="tryAgregarEspecialidad()" color="accent"><mat-icon>add</mat-icon></button>
+            <div *ngIf="permitirNuevasEspecialidades">
+                <div>O agrega tu especialidad:</div>
+                <div class="nueva-especialidad">            
+                    <div>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Nueva Especialidad</mat-label>
+                            <input matInput type="text" name="nuevaEspecialidad" [(ngModel)] = "nuevaEspecialidad">
+                        </mat-form-field>
+                        <mat-error *ngIf="nuevaEspecialidadYaExiste">
+                            La especialidad ya existe
+                        </mat-error>
+                    </div>            
+                    <div>
+                        <button [disabled]="nuevaEspecialidad.length === 0 || nuevaEspecialidadYaExiste " mat-raised-button (click)="tryAgregarEspecialidad()" color="accent"><mat-icon>add</mat-icon></button>
+                    </div>
                 </div>
-            </div>        
+            </div>  
         </form>
     </div>    
     <div class="especialidades-chip-list-container">
